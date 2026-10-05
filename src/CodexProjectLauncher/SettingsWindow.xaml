@@ -1,0 +1,120 @@
+<Window x:Class="CodexProjectLauncher.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings"
+        Width="650"
+        Height="460"
+        MinWidth="590"
+        MinHeight="430"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{StaticResource BgBrush}"
+        Foreground="{StaticResource TextBrush}"
+        FontFamily="Segoe UI">
+    <Window.Resources>
+        <Style x:Key="FieldTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="38" />
+            <Setter Property="Background" Value="{StaticResource Panel2Brush}" />
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+            <Setter Property="CaretBrush" Value="{StaticResource TextBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="10,0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="18" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="18" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="18" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Settings" FontSize="22" FontWeight="Bold" />
+            <TextBlock Text="Launcher paths and initialization behavior"
+                       Margin="0,6,0,0"
+                       Foreground="{StaticResource MutedBrush}"
+                       FontSize="12" />
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="9" />
+                <ColumnDefinition Width="92" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="VS Code executable" Margin="0,0,0,7" Foreground="{StaticResource MutedBrush}" FontSize="12" />
+                <TextBox x:Name="VsCodePathBox" Style="{StaticResource FieldTextBoxStyle}" />
+            </StackPanel>
+            <Button Grid.Column="2"
+                    Content="Browse…"
+                    Margin="0,23,0,0"
+                    Style="{StaticResource BaseButtonStyle}"
+                    Click="BrowseVsCodeButton_Click" />
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="9" />
+                <ColumnDefinition Width="92" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Codex homes root" Margin="0,0,0,7" Foreground="{StaticResource MutedBrush}" FontSize="12" />
+                <TextBox x:Name="CodexRootBox" Style="{StaticResource FieldTextBoxStyle}" />
+            </StackPanel>
+            <Button Grid.Column="2"
+                    Content="Browse…"
+                    Margin="0,23,0,0"
+                    Style="{StaticResource BaseButtonStyle}"
+                    Click="BrowseCodexRootButton_Click" />
+        </Grid>
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="9" />
+                <ColumnDefinition Width="92" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="VS Code data root" Margin="0,0,0,7" Foreground="{StaticResource MutedBrush}" FontSize="12" />
+                <TextBox x:Name="VsCodeDataRootBox" Style="{StaticResource FieldTextBoxStyle}" />
+            </StackPanel>
+            <Button Grid.Column="2"
+                    Content="Browse…"
+                    Margin="0,23,0,0"
+                    Style="{StaticResource BaseButtonStyle}"
+                    Click="BrowseVsCodeDataRootButton_Click" />
+        </Grid>
+
+        <CheckBox x:Name="BootstrapCodexStateCheckBox"
+                  Grid.Row="8"
+                  Foreground="{StaticResource TextBrush}"
+                  FontSize="13"
+                  VerticalAlignment="Center">
+            <TextBlock Text="Initialize new project Codex homes with existing Codex authentication/config" TextWrapping="Wrap" />
+        </CheckBox>
+
+        <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancel"
+                    Margin="0,0,9,0"
+                    Style="{StaticResource BaseButtonStyle}"
+                    Click="CancelButton_Click" />
+            <Button Content="Save"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Click="SaveButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
