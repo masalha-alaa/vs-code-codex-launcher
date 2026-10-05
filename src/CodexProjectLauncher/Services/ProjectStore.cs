@@ -30,7 +30,7 @@ public sealed class ProjectStore
         {
             var json = File.ReadAllText(ProjectsFilePath);
             return JsonSerializer.Deserialize<List<ProjectEntry>>(json, JsonOptions)
-                   ?? Array.Empty<ProjectEntry>();
+                   ?? new List<ProjectEntry>();
         }
         catch
         {
