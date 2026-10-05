@@ -84,20 +84,19 @@ public partial class MainWindow : Window
 
     private void AddProjectButton_Click(object sender, RoutedEventArgs e)
     {
-        using var dialog = new System.Windows.Forms.FolderBrowserDialog
+        var dialog = new Microsoft.Win32.OpenFolderDialog
         {
-            Description = "Select a project folder",
-            UseDescriptionForTitle = true,
-            ShowNewFolderButton = true
+            Title = "Select a project folder",
+            Multiselect = false
         };
 
-        if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK ||
-            string.IsNullOrWhiteSpace(dialog.SelectedPath))
+        if (dialog.ShowDialog(this) != true ||
+            string.IsNullOrWhiteSpace(dialog.FolderName))
         {
             return;
         }
 
-        var folderPath = Path.GetFullPath(dialog.SelectedPath)
+        var folderPath = Path.GetFullPath(dialog.FolderName)
             .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
         var existing = _projects.FirstOrDefault(p => PathsEqual(p.FolderPath, folderPath));
