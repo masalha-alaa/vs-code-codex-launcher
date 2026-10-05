@@ -1,0 +1,19 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build output
+publish/
+artifacts/
+
+# IDE
+.vs/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
