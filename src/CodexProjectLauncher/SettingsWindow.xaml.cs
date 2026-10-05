@@ -76,16 +76,19 @@ public partial class SettingsWindow : Window
 
     private static string? BrowseForFolder(string title, string currentPath)
     {
-        using var dialog = new System.Windows.Forms.FolderBrowserDialog
+        var dialog = new OpenFolderDialog
         {
-            Description = title,
-            UseDescriptionForTitle = true,
-            ShowNewFolderButton = true,
-            SelectedPath = Directory.Exists(currentPath) ? currentPath : string.Empty
+            Title = title,
+            Multiselect = false
         };
 
-        return dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK
-            ? dialog.SelectedPath
+        if (Directory.Exists(currentPath))
+        {
+            dialog.InitialDirectory = currentPath;
+        }
+
+        return dialog.ShowDialog() == true
+            ? dialog.FolderName
             : null;
     }
 
