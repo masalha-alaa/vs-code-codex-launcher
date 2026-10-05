@@ -1,0 +1,54 @@
+name: Build Windows app
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore src/CodexProjectLauncher/CodexProjectLauncher.csproj
+
+      - name: Build
+        run: dotnet build src/CodexProjectLauncher/CodexProjectLauncher.csproj -c Release --no-restore
+
+      - name: Publish self-contained Windows x64 app
+        run: >-
+          dotnet publish src/CodexProjectLauncher/CodexProjectLauncher.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          --no-restore
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:DebugType=None
+          -p:DebugSymbols=false
+          -o publish
+
+      - name: Create ZIP
+        shell: pwsh
+        run: Compress-Archive -Path publish\* -DestinationPath CodexProjectLauncher-win-x64.zip -Force
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CodexProjectLauncher-win-x64
+          path: CodexProjectLauncher-win-x64.zip
+          if-no-files-found: error
+          retention-days: 30
