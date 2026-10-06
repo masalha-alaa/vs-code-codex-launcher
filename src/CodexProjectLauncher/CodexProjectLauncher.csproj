@@ -6,8 +6,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>CodexProjectLauncher</AssemblyName>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
     <RootNamespace>CodexProjectLauncher</RootNamespace>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\AppIcon.ico" />
+  </ItemGroup>
 </Project>
