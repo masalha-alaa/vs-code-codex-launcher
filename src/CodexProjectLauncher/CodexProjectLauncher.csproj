@@ -6,6 +6,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>CodexProjectLauncher</AssemblyName>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Product>Codex Project Launcher</Product>
+    <Description>Launch VS Code projects with isolated Codex sessions.</Description>
     <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
     <RootNamespace>CodexProjectLauncher</RootNamespace>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
